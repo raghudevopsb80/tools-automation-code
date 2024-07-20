@@ -1,3 +1,8 @@
+# Following steps need to be run manually
+# sudo curl -L -O /etc/yum.repos.d/gh-cli.repo https://cli.github.com/packages/rpm/gh-cli.repo
+# sudo dnf install gh-cli -y
+
+
 - name: Setup Prompt
   ansible.builtin.shell: set-prompt github-runner
 
