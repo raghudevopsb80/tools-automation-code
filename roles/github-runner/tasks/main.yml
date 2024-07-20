@@ -1,5 +1,5 @@
 # Following steps need to be run manually
-# sudo curl -L -O /etc/yum.repos.d/gh-cli.repo https://cli.github.com/packages/rpm/gh-cli.repo
+# sudo curl -L -o /etc/yum.repos.d/gh-cli.repo https://cli.github.com/packages/rpm/gh-cli.repo
 # sudo dnf install gh -y
 # gh auth login
 # gh auth refresh -h github.com -s admin:org
@@ -42,7 +42,7 @@
     state: latest
 
 - name: Configure Github Runner
-  ansible.builtin.shell: echo ./config.sh --url https://github.com/raghudevopsb80 --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
+  ansible.builtin.shell: ./config.sh --url https://github.com/raghudevopsb80 --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
   args:
     chdir: /actions-runner
   become_user: grunner
