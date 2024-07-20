@@ -49,7 +49,7 @@
 
 - name: debug
   debug:
-    msg: " {{ runner_count.stdout }}"
+    msg: " {{ runner_count.stdout | regex_replace(' ', '')  }}"
 
 - name: Configure Github Runner
   ansible.builtin.shell: ./config.sh --url https://github.com/raghudevopsb80 --token {{ token.stdout }} --runnergroup Default --name ec2 --labels rhel --work _work --replace
