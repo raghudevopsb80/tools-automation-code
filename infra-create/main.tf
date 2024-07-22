@@ -4,6 +4,14 @@ resource "aws_instance" "tool" {
   vpc_security_group_ids = [aws_security_group.tool-sg.id]
   iam_instance_profile   = aws_iam_instance_profile.instance-profile.name
 
+  instance_market_options {
+    market_type = "spot"
+    spot_options {
+      instance_interruption_behavior = "stop"
+      spot_instance_type             = "persistent"
+    }
+  }
+
   tags = {
     Name = var.name
   }
@@ -14,17 +22,17 @@ resource "aws_security_group" "tool-sg" {
   description = "${var.name}-sg"
 
   egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    from_port        = 22
-    to_port          = 22
-    protocol         = "TCP"
-    cidr_blocks      = ["0.0.0.0/0"]
+    from_port   = 22
+    to_port     = 22
+    protocol    = "TCP"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags = {
