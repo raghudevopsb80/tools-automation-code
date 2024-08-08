@@ -14,6 +14,7 @@
     dest: /bin/kubectl
     mode: '0755'
 
-
+- name: Start Minikube
+  ansible.builtin.shell: minikube start --force
 
 
