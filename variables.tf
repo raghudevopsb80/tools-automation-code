@@ -7,6 +7,7 @@ variable "tools" {
         "AdministratorAccess"
       ]
       ports = {}
+      volume_size = 20
     }
 
     vault = {
@@ -15,8 +16,17 @@ variable "tools" {
       ports = {
         vault = 8200
       }
+      volume_size = 20
     }
 
+    minikube = {
+      instance_type = "t3.medium"
+      policy_name   = []
+      ports = {
+        kube = 8443
+      }
+      volume_size = 30
+    }
 
   }
 }
@@ -24,3 +34,4 @@ variable "tools" {
 variable "hosted_zone_id" {
   default = "Z00376861T6KFA01SJSIS"
 }
+
