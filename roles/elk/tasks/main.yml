@@ -11,7 +11,13 @@
     name:
       - elasticsearch
       - kibana
+      - nginx
     state: installed
+
+- name: COpy nginx config file
+  ansible.builtin.copy:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
 
 - name: Start ELK Tools
   ansible.builtin.systemd_service:
@@ -20,6 +26,7 @@
   loop:
     - elasticsearch
     - kibana
+    - nginx
 
 
 
