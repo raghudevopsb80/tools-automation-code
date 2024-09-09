@@ -16,7 +16,7 @@
 - name: Start ELK Tools
   ansible.builtin.systemd_service:
     name: "{{ item }}"
-    state: installed
+    state: restarted
   loop:
     - elasticsearch
     - kibana
