@@ -19,6 +19,15 @@ variable "tools" {
       volume_size = 20
     }
 
+    vault = {
+      instance_type = "r7i.large"
+      policy_name   = []
+      ports = {
+        vault = 80
+      }
+      volume_size = 30
+    }
+
     #     minikube = {
     #       instance_type = "t3.medium"
     #       policy_name   = []
