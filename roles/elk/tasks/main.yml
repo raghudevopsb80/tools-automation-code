@@ -1,0 +1,13 @@
+- name: Setup Prompt
+  ansible.builtin.shell: set-prompt elk
+
+- name: Copy Elastic repo
+  ansible.builtin.copy:
+    src: elastic.repo
+    dest: /etc/yum.repos.d/elastic.repo
+
+#- name: Install elasticsearch
+
+
+
+
