@@ -56,7 +56,7 @@
   when: runner_count.stdout == "0" or runner_status.stdout == "offline"
 
 - name: Update Path file
-  ansible.builtin.file:
+  ansible.builtin.copy:
     src: path
     dest: /actions-runner/.path
   become_user: grunner
