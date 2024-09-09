@@ -19,7 +19,7 @@ variable "tools" {
       volume_size = 20
     }
 
-    vault = {
+    elk = {
       instance_type = "r7i.large"
       policy_name   = []
       ports = {
