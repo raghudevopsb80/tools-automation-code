@@ -6,8 +6,27 @@
     src: elastic.repo
     dest: /etc/yum.repos.d/elastic.repo
 
-#- name: Install elasticsearch
+- name: Install ELK Tools
+  ansible.builtin.dnf:
+    name:
+      - elasticsearch
+      - kibana
+    state: installed
+
+- name: Start ELK Tools
+  ansible.builtin.systemd_service:
+    name: "{{ item }}"
+    state: installed
+  loop:
+    - elasticsearch
+    - kibana
 
 
+
+# Reset admin password
+#/usr/share/elasticsearch/bin/elasticsearch-reset-password -u elastic
+
+# Get a enrollment token for kibana to connect to elasticsearch
+#  /usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana
 
 
