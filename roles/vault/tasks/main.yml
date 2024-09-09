@@ -11,6 +11,11 @@
     name: vault
     state: latest
 
+- name: Copy vault config
+  ansible.builtin.copy:
+    src: vault.hcl
+    dest: /etc/vault/vault.hcl
+
 - name: Start Vault serice
   ansible.builtin.systemd_service:
     name: vault
