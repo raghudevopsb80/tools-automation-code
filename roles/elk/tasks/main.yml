@@ -29,6 +29,7 @@
   ansible.builtin.systemd_service:
     name: "{{ item }}"
     state: restarted
+    enabled: yes
   loop:
     - elasticsearch
     - kibana
