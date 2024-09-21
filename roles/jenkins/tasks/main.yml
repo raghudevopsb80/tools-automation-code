@@ -1,42 +1,52 @@
-- name: Setup Prompt
-  ansible.builtin.shell: set-prompt jenkins
+- name: Jenkins Install & Setup
+  when: skip_install
+  block:
+    - name: Setup Prompt
+      ansible.builtin.shell: set-prompt jenkins
 
-- name: Copy Jenkins Repo
-  ansible.builtin.copy:
-    src: jenkins.repo
-    dest: /etc/yum.repos.d/jenkins.repo
+    - name: Copy Jenkins Repo
+      ansible.builtin.copy:
+        src: jenkins.repo
+        dest: /etc/yum.repos.d/jenkins.repo
 
-- name: Install Jenkins
-  ansible.builtin.dnf:
-    name:
-      - fontconfig
-      - java-17-openjdk
-      - jenkins
-    state: installed
+    - name: Install Jenkins
+      ansible.builtin.dnf:
+        name:
+          - fontconfig
+          - java-17-openjdk
+          - jenkins
+        state: installed
 
-- name: Create init.d directory
-  ansible.builtin.file:
-    path: /var/lib/jenkins/init.groovy.d
-    state: directory
-    owner: jenkins
-    group: jenkins
+    - name: Create init.d directory
+      ansible.builtin.file:
+        path: /var/lib/jenkins/init.groovy.d
+        state: directory
+        owner: jenkins
+        group: jenkins
 
-- name: Copy Init groovy files
-  ansible.builtin.template:
-    src: "{{ item }}.groovy"
-    dest: /var/lib/jenkins/init.groovy.d/{{ item }}.groovy
-    owner: jenkins
-    group: jenkins
+    - name: Copy Init groovy files
+      ansible.builtin.template:
+        src: "{{ item }}.groovy"
+        dest: /var/lib/jenkins/init.groovy.d/{{ item }}.groovy
+        owner: jenkins
+        group: jenkins
+      loop:
+        - 01-skip-unlock
+        - 02-admin-user
+        - 03-plugins
+
+    - name: Start Jenkins
+      ansible.builtin.systemd_service:
+        name: jenkins
+        state: restarted
+        enabled: yes
+
+- name: Create Jobs
+  when: create_jobs
+  ansible.builtin.include_tasks:
+    file: mbranch-jobs.yml
   loop:
-    - 01-skip-unlock
-    - 02-admin-user
-    - 03-plugins
-
-- name: Start Jenkins
-  ansible.builtin.systemd_service:
-    name: jenkins
-    state: restarted
-    enabled: yes
+    - { jobName: 'test-1'}
 
 
 
