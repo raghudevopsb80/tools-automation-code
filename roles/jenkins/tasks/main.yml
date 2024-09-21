@@ -1,0 +1,25 @@
+- name: Setup Prompt
+  ansible.builtin.shell: set-prompt jenkins
+
+- name: Copy Jenkins Repo
+  ansible.builtin.copy:
+    src: jenkins.repo
+    dest: /etc/yum.repos.d/jenkins.repo
+
+- name: Install Jenkins
+  ansible.builtin.dnf:
+    name:
+      - fontconfig
+      - java-17-openjdk
+      - jenkins
+    state: installed
+
+- name: Start Jenkins
+  ansible.builtin.systemd_service:
+    name: jenkins
+    state: restarted
+    enabled: yes
+
+
+
+
