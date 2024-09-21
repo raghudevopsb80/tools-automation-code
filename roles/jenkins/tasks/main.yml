@@ -29,6 +29,7 @@
     groovy: jenkins
   loop:
     - 01-skip-unlock
+    - 02-admin-user
 
 - name: Start Jenkins
   ansible.builtin.systemd_service:
