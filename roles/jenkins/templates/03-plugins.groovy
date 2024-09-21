@@ -20,5 +20,4 @@ plugins.each { pluginName ->
   }
 }
 
-instance.save()
-instance.doSafeRestart()
+
