@@ -12,7 +12,11 @@ plugins.each { pluginName ->
     if (plugin) {
       println("Installing " + pluginName)
       plugin.deploy()
+    } else {
+      println("Plugin not found: " + pluginName)
     }
+  } else {
+    println("Plugin already installed: " + pluginName)
   }
 }
 
