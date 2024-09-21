@@ -2,7 +2,8 @@ import jenkins.model.*
 import hudson.PluginWrapper
 
 def pluginsToInstall = [
-    'workflow-multibranch'
+    'workflow-multibranch',
+    'git'
 ]
 
 // Reference Jenkins Plugin Manager and Update Center
