@@ -25,6 +25,8 @@
   ansible.builtin.template:
     src: "{{ item }}.groovy"
     dest: /var/lib/jenkins/init.groovy.d/{{ item }}.groovy
+    owner: jenkins
+    groovy: jenkins
   loop:
     - 01-skip-unlock
 
