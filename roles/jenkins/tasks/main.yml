@@ -1,5 +1,5 @@
 - name: Jenkins Install & Setup
-  when: skip_install
+  when: skip_install | bool
   block:
     - name: Setup Prompt
       ansible.builtin.shell: set-prompt jenkins
@@ -42,7 +42,7 @@
         enabled: yes
 
 - name: Create Jobs
-  when: create_jobs
+  when: create_jobs | bool
   ansible.builtin.include_tasks:
     file: mbranch-jobs.yml
   loop:
