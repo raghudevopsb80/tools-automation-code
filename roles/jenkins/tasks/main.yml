@@ -26,7 +26,7 @@
     src: "{{ item }}.groovy"
     dest: /var/lib/jenkins/init.groovy.d/{{ item }}.groovy
     owner: jenkins
-    groovy: jenkins
+    group: jenkins
   loop:
     - 01-skip-unlock
     - 02-admin-user
