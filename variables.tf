@@ -29,6 +29,15 @@ variable "tools" {
       volume_size = 30
     }
 
+    jenkins = {
+      instance_type = "t3.small"
+      policy_name   = []
+      ports = {
+        jenkins = 8080
+      }
+      volume_size = 20
+    }
+
     #     minikube = {
     #       instance_type = "t3.medium"
     #       policy_name   = []
