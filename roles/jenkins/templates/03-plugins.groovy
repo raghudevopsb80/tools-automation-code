@@ -3,7 +3,9 @@ import hudson.PluginWrapper
 
 def pluginsToInstall = [
     'workflow-multibranch',
-    'git'
+    'git',
+    'pipeline-stage-view',
+    'blueocean'
 ]
 
 // Reference Jenkins Plugin Manager and Update Center
