@@ -17,6 +17,12 @@
     nobest: yes
     state: installed
 
+- name: Add Docker group to Jenkins
+  ansible.builtin.user:
+    name: jenkins
+    groups: docker
+    append: yes
+
 - name: Start Docker Service
   ansible.builtin.systemd:
     name: docker
