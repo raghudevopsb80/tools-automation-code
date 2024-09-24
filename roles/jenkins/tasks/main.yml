@@ -39,7 +39,13 @@
     state: restarted
     enabled: yes
 
+- name: Install NodeJS
+  ansible.builtin.shell: dnf module disable nodejs -y ; dnf module enable nodejs:20 -y
 
+- name: Install NodeJS
+  ansible.builtin.dnf:
+    name: nodejs
+    state: installed
 
 
 
