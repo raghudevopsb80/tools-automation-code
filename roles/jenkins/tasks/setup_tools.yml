@@ -14,7 +14,7 @@
 - name: Install Docker
   ansible.builtin.dnf:
     name: docker-ce
-    nobest: ues
+    nobest: yes
     state: installed
 
 - name: Start Docker Service
