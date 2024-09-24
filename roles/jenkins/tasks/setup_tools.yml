@@ -6,3 +6,20 @@
     name: nodejs
     state: installed
 
+- name: COpy Docker repo
+  ansible.builtin.copy:
+    src: docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+
+- name: Install Docker
+  ansible.builtin.dnf:
+    name: docker-ce
+    nobest: ues
+    state: installed
+
+- name: Start Docker Service
+  ansible.builtin.systemd:
+    name: docker
+    state: started
+    enabled: yes
+
