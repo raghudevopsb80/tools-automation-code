@@ -1,51 +1,11 @@
-- name: Setup Prompt
-  ansible.builtin.shell: set-prompt jenkins
+- name: Setup Jenkins
+  ansible.builtin.include_tasks:
+    file: setup_jenkins.yml
+  when: setup_jenkins | bool
 
-- name: Copy Jenkins Repo
-  ansible.builtin.copy:
-    src: jenkins.repo
-    dest: /etc/yum.repos.d/jenkins.repo
-
-- name: Install Jenkins
-  ansible.builtin.dnf:
-    name:
-      - fontconfig
-      - java-17-openjdk
-      - jenkins
-    state: installed
-
-- name: Create init.d directory
-  ansible.builtin.file:
-    path: /var/lib/jenkins/init.groovy.d
-    state: directory
-    owner: jenkins
-    group: jenkins
-
-- name: Copy Init groovy files
-  ansible.builtin.template:
-    src: "{{ item }}.groovy"
-    dest: /var/lib/jenkins/init.groovy.d/{{ item }}.groovy
-    owner: jenkins
-    group: jenkins
-  loop:
-    - 01-skip-unlock
-    - 02-admin-user
-    - 03-plugins
-    - 04-shared-library
-
-- name: Start Jenkins
-  ansible.builtin.systemd_service:
-    name: jenkins
-    state: restarted
-    enabled: yes
-
-- name: Install NodeJS
-  ansible.builtin.shell: dnf module disable nodejs -y ; dnf module enable nodejs:20 -y
-
-- name: Install NodeJS
-  ansible.builtin.dnf:
-    name: nodejs
-    state: installed
-
+- name: Setup Tools
+  ansible.builtin.include_tasks:
+    file: setup_tools.yml
+  when: setup_tools | bool
 
 
