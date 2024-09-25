@@ -38,3 +38,13 @@
     name: jenkins
     state: restarted
     enabled: yes
+
+- name: Increase Disk Partition
+  ansible.builtin.shell: growpart /dev/nvme0n1 4 || true
+
+- name: Create
+  community.general.lvol:
+    vg: RootVG
+    lv: varVol
+    size: 12g
+
