@@ -33,16 +33,15 @@
     - 03-plugins
     - 04-shared-library
 
-- name: Start Jenkins
-  ansible.builtin.systemd_service:
-    name: jenkins
-    state: restarted
-    enabled: yes
-
 - name: Increase Disk Partition
   ansible.builtin.shell: growpart /dev/nvme0n1 4 || true
 
 - name: Increase Volume Group
   ansible.builtin.shell: lvextend -r -L 12G /dev/mapper/RootVG-varVol || true
 
+- name: Start Jenkins
+  ansible.builtin.systemd_service:
+    name: jenkins
+    state: restarted
+    enabled: yes
 
