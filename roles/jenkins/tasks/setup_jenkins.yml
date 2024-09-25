@@ -47,4 +47,5 @@
     vg: RootVG
     lv: varVol
     size: 12g
+    opts: -r
 
