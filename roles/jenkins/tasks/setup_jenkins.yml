@@ -42,10 +42,7 @@
 - name: Increase Disk Partition
   ansible.builtin.shell: growpart /dev/nvme0n1 4 || true
 
-- name: Create
-  community.general.lvol:
-    vg: RootVG
-    lv: varVol
-    size: 12g
-    opts: -r
+- name: Increase Volume Group
+  ansible.builtin.shell: lvextend -r -L 12G /dev/mapper/RootVG-varVol || true
+
 
