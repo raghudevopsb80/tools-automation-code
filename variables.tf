@@ -35,7 +35,7 @@ variable "tools" {
       ports = {
         jenkins = 8080
       }
-      volume_size = 20
+      volume_size = 30
     }
 
     #     minikube = {
