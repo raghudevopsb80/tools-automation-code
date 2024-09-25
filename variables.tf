@@ -31,7 +31,7 @@ variable "tools" {
 
     jenkins = {
       instance_type = "t3.small"
-      policy_name   = []
+      policy_name   = ["AmazonEC2ContainerRegistryPowerUser"]
       ports = {
         jenkins = 8080
       }
