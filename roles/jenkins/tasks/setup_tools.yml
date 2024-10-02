@@ -29,3 +29,18 @@
     state: started
     enabled: yes
 
+- name: Download Github cli repo
+  ansible.builtin.get_url:
+    url: https://cli.github.com/packages/rpm/gh-cli.repo
+    dest: /etc/yum.repos.d/gh-cli.repo
+
+- name: Install GH cli
+  ansible.builtin.dnf:
+    name: gh
+    state: installed
+
+## After gh install
+# Login as jenkins user
+# gh auth login && gh repo list
+# gh auth refresh -h github.com -s admin:org
+
