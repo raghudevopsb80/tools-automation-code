@@ -87,6 +87,18 @@
     dest: /bin/argocd
     mode: '0755'
 
+- name: Copy Trivy repo
+  ansible.builtin.copy:
+    src: trivy.repo
+    dest: /etc/yum/repos.d/trivy.repo
+
+- name: Install Trivy
+  ansible.builtin.dnf:
+    name: trivy
+    state: installed
+
+
+
 
 
 
