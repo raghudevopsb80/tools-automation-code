@@ -11,5 +11,5 @@
 - name: Set LVM Sizes
   ansible.builtin.shell: lvextend -r -L {{ item.size }}G /dev/mapper/RootVG-{{ item.name }}
   ignore_errors: true
-  loop: "{{ lv_sizes }}""
+  loop: "{{ lv_sizes }}"
 
