@@ -90,7 +90,7 @@
 - name: Copy Trivy repo
   ansible.builtin.copy:
     src: trivy.repo
-    dest: /etc/yum/repos.d/trivy.repo
+    dest: /etc/yum.repos.d/trivy.repo
 
 - name: Install Trivy
   ansible.builtin.dnf:
