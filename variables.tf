@@ -7,7 +7,7 @@ variable "tools" {
         "AdministratorAccess"
       ]
       ports       = {}
-      volume_size = 20
+      volume_size = 30
     }
 
     vault = {
