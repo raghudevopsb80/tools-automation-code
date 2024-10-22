@@ -1,6 +1,6 @@
 lv_sizes:
   - {name: auditVol, size: 4.4}
-  - {name: homeVol, size: 1}
+  - {name: homeVol, size: 5}
   - {name: logVol, size: 2}
   - {name: rootVol, size: 15}
   - {name: swapVol, size: 2}
