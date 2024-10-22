@@ -102,6 +102,16 @@
     name: trivy
     state: installed
 
+- name: COpy kubectl repo
+  ansible.builtin.copy:
+    src: kubectl.repo
+    dest: /etc/yum.repos.d/kubectl.repo
+
+- name: Install kubectl
+  ansible.builtin.dnf:
+    name: kubectl
+    state: installed
+
 
 
 
