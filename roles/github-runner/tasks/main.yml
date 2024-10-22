@@ -6,6 +6,11 @@
 - name: Setup Prompt
   ansible.builtin.shell: set-prompt github-runner
 
+- name: Setup LVM Disk size
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: lvm
+
 - name: Add Github Runner User
   ansible.builtin.user:
     name: grunner
@@ -97,10 +102,7 @@
     name: trivy
     state: installed
 
-- name: Setup LVM Disk size
-  ansible.builtin.include_role:
-    name: common
-    tasks_from: lvm
+
 
 
 
