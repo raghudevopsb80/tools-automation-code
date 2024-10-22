@@ -1,0 +1,15 @@
+- name: Increase the disk partition
+  ansible.builtin.shell: growpart /dev/nvme0n1 4
+  ignore_errors: true
+  register: partition_out
+
+- name: Fail with Message
+  ansible.builtin.fail:
+    msg: Partition increase is a failure.
+  when: partition_out.rc > 1
+
+- name: Set LVM Sizes
+  ansible.builtin.shell: lvextend -r -L {{ item.size }}G /dev/mapper/RootVG-{{ item.name }}
+  ignore_errors: true
+  loop: "{{ lv_sizes }}""
+
