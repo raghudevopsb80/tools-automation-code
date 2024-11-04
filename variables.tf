@@ -42,9 +42,9 @@ variable "tools" {
       instance_type = "t3.large"
       policy_name   = []
       ports = {
-        jenkins = 9100
+        jenkins = 9000
       }
-      volume_size = 20
+      volume_size = 30
     }
 
     #     minikube = {
