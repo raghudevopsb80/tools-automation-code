@@ -40,7 +40,7 @@ variable "tools" {
 
     sonarqube = {
       instance_type = "t3.large"
-      policy_name   = [""]
+      policy_name   = []
       ports = {
         jenkins = 9100
       }
