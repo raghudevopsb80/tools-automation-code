@@ -38,6 +38,15 @@ variable "tools" {
       volume_size = 30
     }
 
+    sonarqube = {
+      instance_type = "t3.large"
+      policy_name   = [""]
+      ports = {
+        jenkins = 9100
+      }
+      volume_size = 20
+    }
+
     #     minikube = {
     #       instance_type = "t3.medium"
     #       policy_name   = []
